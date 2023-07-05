@@ -13,16 +13,15 @@ resource "google_project_service" "orgpolicy_api" {
   project = "rosy-crawler-389806"
 }
 
-# Define the policy to restrict public IP addresses
-resource "google_org_policy_policy" "restrict_public_ips" {
-  name = "projects/rosy-crawler-389806/policies/gcp.RestricPublicIPs"
-  parent = "projects/rosy-crawler-389806"
-  depends_on = [
-    google_project_service.orgpolicy_api
-  ]
-    spec {
-      rules {
-        enforce = "constraints/compute.disableGlobalSerialPortAccess"
-      }
-    }
-  }
+module "org-policy" {
+  source            = "terraform-google-modules/org-policy/google"
+  version           = "~> 5.2.2"
+  policy_for        = "project"
+  project_id        = "rosy-crawler-389806"
+  constraint        = "constraints/compute.disableGlobalSerialPortAccess"
+  policy_type       = "boolean"
+  organization_id   = "	494812795773"
+  enforce           = true
+  //exclude_folders   = ["folders/folder-1-id", "folders/folder-2-id"]
+  //exclude_projects  = ["project3", "project4"]
+}
