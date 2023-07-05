@@ -1,6 +1,5 @@
 provider "google" { 
-    region = "europe-west1"
-    project  = "147439111951"
-    user_project_override = true
-    billing_project = "terraform-316516"
+  project = "rosy-crawler-389806"
+  region  = "europe-west1"
+  billing_project = "terraform-316516"
 }

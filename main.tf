@@ -15,9 +15,8 @@ resource "google_project_service" "orgpolicy_api" {
 
 # Define the policy to restrict public IP addresses
 resource "google_org_policy_policy" "restrict_public_ips" {
-  provider = google-beta
-  name = "organizations/494812795773/policies/gcp.RestricPublicIPs"
-  parent = "organizations/494812795773"
+  name = "projects/rosy-crawler-389806/policies/gcp.RestricPublicIPs"
+  parent = "projects/rosy-crawler-389806"
   depends_on = [
     google_project_service.orgpolicy_api
   ]
