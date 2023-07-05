@@ -47,7 +47,7 @@ module "publicAccessPrevention" {
   project_id        = "rosy-crawler-389806"
   constraint        = "constraints/storage.publicAccessPrevention"
   policy_type       = "boolean"
-  organization_id   = "	494812795773"
+  organization_id   = "494812795773"
   enforce           = true
 }
 
@@ -58,7 +58,18 @@ module "resourceLocations" {
   project_id        = "rosy-crawler-389806"
   constraint        = "constraints/gcp.resourceLocations"
   policy_type       = "list"
-  organization_id   = "	494812795773"
+  organization_id   = "494812795773"
   allow            = ["ZONE:europe-west1"]
   allow_list_length = 1
+}
+
+module "sqlrestrictPublicIp" {
+  source            = "terraform-google-modules/org-policy/google"
+  version           = "~> 5.2.2"
+  policy_for        = "project"
+  project_id        = "rosy-crawler-389806"
+  constraint        = "constraints/sql.restrictPublicIp"
+  policy_type       = "boolean"
+  organization_id   = "494812795773"
+  enforce           = true
 }
