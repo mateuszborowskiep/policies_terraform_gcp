@@ -25,3 +25,17 @@ module "org-policy" {
   //exclude_folders   = ["folders/folder-1-id", "folders/folder-2-id"]
   //exclude_projects  = ["project3", "project4"]
 }
+
+module "org-policy-2" {
+  source            = "terraform-google-modules/org-policy/google"
+  version           = "~> 5.2.2"
+  policy_for        = "project"
+  project_id        = "rosy-crawler-389806"
+  constraint        = "constraints/gcp.restrictTLSVersion"
+  policy_type       = "list"
+  organization_id   = "	494812795773"
+  deny             = ["TLS_VERSION_1", "TLS_VERSION_1_1"]
+  deny_list_length = 2
+  //exclude_folders   = ["folders/folder-1-id", "folders/folder-2-id"]
+  //exclude_projects  = ["project3", "project4"]
+}
