@@ -73,3 +73,14 @@ module "sqlrestrictPublicIp" {
   organization_id   = "494812795773"
   enforce           = true
 }
+
+module "shieldedvm" {
+  source            = "terraform-google-modules/org-policy/google"
+  version           = "~> 5.2.2"
+  policy_for        = "project"
+  project_id        = "rosy-crawler-389806"
+  constraint         = "constraints/compute.requireShieldedVm"
+  policy_type       = "boolean"
+  organization_id   = "494812795773"
+  enforce           = true
+}
