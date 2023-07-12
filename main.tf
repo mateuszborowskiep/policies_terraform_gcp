@@ -84,3 +84,15 @@ module "shieldedvm" {
   organization_id   = "494812795773"
   enforce           = true
 }
+
+module "serviceaccountskeyrotation"{ 
+  source            = "terraform-google-modules/org-policy/google"
+  version           = "~> 5.2.2"
+  policy_for        = "project"
+  project_id        = "rosy-crawler-389806"
+  constraint        = "constraints/iam.serviceAccountKeyExpiryHours"
+  policy_type       = "list"
+  organization_id   = "494812795773"
+  allow            = ["2160h"] // 90 days
+  allow_list_length = 1
+}
